@@ -224,5 +224,3 @@ void resetValues()
     totalValue = 0;
     count = 0;
 }
-
-//Overall, the code seems well thought out and logically sound. However, there could be some issues with the timing of the clap detection and light toggling, as well as with the color calculation. It's possible that the light could turn on or off too quickly in response to claps, making it difficult to control. Additionally, the color calculation might not be perfect, leading to some unexpected results.
