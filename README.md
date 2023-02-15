@@ -22,7 +22,7 @@
 
 ### Mạch kết nối (Sơ đồ mạch)
 
-_Lưu ý: Do TinkerCAD không có cảm biến âm thanh, nên trong sơ đồ này, cảm biến âm thanh được thay bằng cảm biến nhiệt độ để giải thích._
+_Lưu ý: Do TinkerCAD không có cảm biến âm thanh, nên trong sơ đồ này, cảm biến âm thanh được thay bằng cảm biến nhiệt độ để dễ hình dung hơn._
 
 ![diagram](https://github.com/Arcahv/IOT-Light-Clap/blob/23cd5572e47b749996298b83eb5b0954d16fb2da/Picture1.png)
 
