@@ -47,30 +47,30 @@ void setup()
 }
 
 // Returns whether the sound is part of a unique clap or not
-int isSoundPartOfUniqueClap()
+bool isSoundPartOfUniqueClap()
 {
-    int result = 0;
+    int result = false;
     unsigned long elapsedTime =
         soundDetectedTime -
         previousSoundDetectedTime;
     if (elapsedTime >= uniqueClapMinTime)
     {
-        result = 1;
+        result = true;
     }
     return result;
 }
 
 // Checks whether to turn on/off the light based on clap pattern
-int checkTurnOnOffLight()
+bool checkTurnOnOffLight()
 {
-    int result = 0;
+    int result = false;
     unsigned long elapsedTime =
         currentClapTime - previousClapTime;
     if (elapsedTime <= maxTimeBetweenClaps)
     {
         if (numberClaps == 2)
         {
-            result = 1;
+            result = true;
             numberClaps = 0;
         }
     }
@@ -151,14 +151,14 @@ void loop()
 
 void processClapSound()
 {
-    int soundValue = digitalRead(SoundPin);
+    int soundValue = digitalRead(SOUND_PIN);
     if (soundValue == 0)
     {
-        NumberSounds++;
+        numberSounds++;
 
         if (isSoundPartOfUniqueClap())
         {
-            NumberClaps++;
+            numberClaps++;
 
             updateClapTimes();
 
@@ -186,33 +186,31 @@ void processLight()
     }
     else
     {
-        turnOffLight();
+        turnOff();
     }
 }
 
 void updateClapTimes()
 {
-    PreviousClapTime = CurrentClapTime;
-    CurrentClapTime = millis();
-}
-
-bool isSoundPartOfUniqueClap()
-{
-    PreviousSoundDetectedTime = SoundDetectedTime;
-    SoundDetectedTime = millis();
-
-    return /* condition to determine if it's part of a unique clap sound */;
+    previousClapTime = currentClapTime;
+    currentClapTime = millis();
 }
 
 bool shouldToggleLight()
 {
-    return /* condition to determine if light should be turned on or off */;
+    bool toggle = false;
+    if (numberClaps == 2)
+    {
+        toggle = true;
+        numberClaps = 0;
+    }
+    return toggle;
 }
 
 void toggleLightState()
 {
-    LightOn = !LightOn;
-    state = LightOn;
+    lightOn = !lightOn;
+    state = lightOn;
 }
 
 void calculateColor(double sensorValue)
@@ -227,7 +225,4 @@ void resetValues()
     count = 0;
 }
 
-void turnOffLight()
-{
-    off();
-}
+//Overall, the code seems well thought out and logically sound. However, there could be some issues with the timing of the clap detection and light toggling, as well as with the color calculation. It's possible that the light could turn on or off too quickly in response to claps, making it difficult to control. Additionally, the color calculation might not be perfect, leading to some unexpected results.
