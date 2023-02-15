@@ -26,7 +26,7 @@ _Lưu ý: Do TinkerCAD không có cảm biến âm thanh, nên trong sơ đồ n
 
 [TinkerCAD](https://www.tinkercad.com/things/fioqMuHMpYo?sharecode=_mCyEDp15Q6sEe1RN2Aj21vJs9VIkaZVxMhcGPxjW-Q&fbclid=IwAR2HyFys_IT5nQs2Kv_zX3yqLk6ydvaykomXnGIs7mHn6Ge5HeZf5A-SAU8)
 
-![diagram](https://github.com/Arcahv/IOT-Light-Clap/blob/23cd5572e47b749996298b83eb5b0954d16fb2da/Picture1.png)
+![diagram](https://github.com/Arcahv/IOT-Light-Clap/blob/de31063671e10dab68d452231a85896c35d5a7c2/LEDmodule.png)
 
 ## **III. Kết quả đạt được:**
 
