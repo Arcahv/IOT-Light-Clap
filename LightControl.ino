@@ -142,4 +142,92 @@ void changeColor(int value)
     analogWrite(GREEN_PIN, greenValue);
     analogWrite(BLUE_PIN, blueValue);
 }
-  
+
+void loop()
+{
+    processClapSound();
+    processLight();
+}
+
+void processClapSound()
+{
+    int soundValue = digitalRead(SoundPin);
+    if (soundValue == 0)
+    {
+        NumberSounds++;
+
+        if (isSoundPartOfUniqueClap())
+        {
+            NumberClaps++;
+
+            updateClapTimes();
+
+            if (shouldToggleLight())
+            {
+                toggleLightState();
+            }
+        }
+    }
+}
+
+void processLight()
+{
+    if (state)
+    {
+        double sensorValue = analogRead(ANALOG_INP);
+        totalValue += sensorValue;
+        count++;
+
+        if (count > ITERATION)
+        {
+            calculateColor(totalValue / ITERATION);
+            resetValues();
+        }
+    }
+    else
+    {
+        turnOffLight();
+    }
+}
+
+void updateClapTimes()
+{
+    PreviousClapTime = CurrentClapTime;
+    CurrentClapTime = millis();
+}
+
+bool isSoundPartOfUniqueClap()
+{
+    PreviousSoundDetectedTime = SoundDetectedTime;
+    SoundDetectedTime = millis();
+
+    return /* condition to determine if it's part of a unique clap sound */;
+}
+
+bool shouldToggleLight()
+{
+    return /* condition to determine if light should be turned on or off */;
+}
+
+void toggleLightState()
+{
+    LightOn = !LightOn;
+    state = LightOn;
+}
+
+void calculateColor(double sensorValue)
+{
+    //Serial.println(sensorValue);
+    changeColor(sensorValue);
+}
+
+void resetValues()
+{
+    totalValue = 0;
+    count = 0;
+}
+
+void turnOffLight()
+{
+    off();
+}
